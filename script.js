@@ -3,7 +3,7 @@ let currentTurn = 0;
 let deck = [];
 let pile = [];
 let currentCards = [];
-let usedCards = new Set();  // 使われたカードのセット (カードオブジェクト全体を格納)
+let usedCards = new Set();
 let currentPoints = 2; // 最初の得点は2点
 
 function addPlayer() {
@@ -35,7 +35,6 @@ async function loadCards() {
     try {
         const response = await fetch("cards.json");
         deck = await response.json();
-        console.log("Deck loaded successfully:", deck); // 成功時にdeckの中身を確認
         deck = shuffle(deck);
     } catch (error) {
         console.error("JSONの読み込みに失敗しました", error);
@@ -67,7 +66,7 @@ function getUniqueCards(count) {
     while (selectedCards.length < count && deck.length > 0) {
         let card = deck.pop();
         if (!usedCards.has(card.image)) {
-            usedCards.add(card.image);  // 画像名でなくカード全体を使用
+            usedCards.add(card.image);
             selectedCards.push(card);
         }
     }
@@ -150,11 +149,7 @@ function showResults() {
     ).join("");
 
     document.getElementById("result-cards").innerHTML = Array.from(usedCards).map(image => {
-        let card = [...deck, ...pile].find(c => c.image === image);  // imageで検索
-        console.log("Deck: ", deck);
-        console.log("Used Cards: ", usedCards);
-        console.log(image)
-        console.log(card);  // カードが正しく見つかるか確認
+        let card = [...deck, ...pile].find(c => c.image === image);
         return `<div class="result-card">
             <img src="${image}" width="100" height="150">
             <p>攻撃力: ${card ? card.attack : "不明"}</p>
