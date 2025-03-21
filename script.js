@@ -149,9 +149,8 @@ function showResults() {
     ).join("");
 
     document.getElementById("result-cards").innerHTML = Array.from(usedCards).map(image => {
-        let card = [...deck, ...pile].find(c => c.image === image);  // deck と pile を結合して検索
-        console.log(image);
-        console.log(card);
+        let card = [...deck, ...pile].find(c => c.image === image);  // imageで検索
+        console.log(card);  // カードが正しく見つかるか確認
         return `<div class="result-card">
             <img src="${image}" width="100" height="150">
             <p>攻撃力: ${card ? card.attack : "不明"}</p>
