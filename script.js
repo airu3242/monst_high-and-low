@@ -21,7 +21,7 @@ async function loadCards() {
         deck = await response.json();
         deck = shuffle(deck);
     } catch (error) {
-        console.error("JSONの読み込みに失敗しました", error);
+        console.error("JSONの読み込みに失敗しました。", error);
     }
 }
 
