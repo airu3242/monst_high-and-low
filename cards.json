@@ -7,4 +7,5 @@
     { "id": 6, "attack": 1100, "image": "images/character6.png" },
     { "id": 7, "attack": 1400, "image": "images/character7.png" },
     { "id": 8, "attack": 1700, "image": "images/character8.png" }
+    { "id": 8, "attack": 10000, "image": "images/character1.png" }
 ]
