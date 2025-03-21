@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HiGH&LOWゲーム</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div id="title-screen">
+        <h1>HiGH&LOWゲーム</h1>
+        <input type="text" id="player-names" placeholder="プレイヤー名をカンマ区切りで入力">
+        <button onclick="startGame()">ゲームスタート</button>
+    </div>
+
+    <div id="game-area" style="display: none;">
+        <h2>現在のプレイヤー: <span id="current-player"></span></h2>
+        <div id="current-cards"></div>
+        <h3>たまっているカード</h3>
+        <div id="pile"></div>
+        <h3>スコア</h3>
+        <div id="player-scores"></div>
+    </div>
+
+    <div id="result-screen" style="display: none;">
+        <h2>リザルト</h2>
+        <div id="result-players"></div>
+        <h3>今回出たカード</h3>
+        <div id="result-cards"></div>
+        <button onclick="restartGame()">もう一度遊ぶ</button>
+    </div>
+
+    <audio id="correct-sound" src="sounds/correct.mp3"></audio>
+    <audio id="wrong-sound" src="sounds/wrong.mp3"></audio>
+
+    <script src="script.js"></script>
+
+</body>
+</html>

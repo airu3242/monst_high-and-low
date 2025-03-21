@@ -1,0 +1,10 @@
+[
+    { "id": 1, "attack": 1500, "image": "images/character1.png" },
+    { "id": 2, "attack": 1200, "image": "images/character2.png" },
+    { "id": 3, "attack": 1800, "image": "images/character3.png" },
+    { "id": 4, "attack": 1300, "image": "images/character4.png" },
+    { "id": 5, "attack": 1600, "image": "images/character5.png" },
+    { "id": 6, "attack": 1100, "image": "images/character6.png" },
+    { "id": 7, "attack": 1400, "image": "images/character7.png" },
+    { "id": 8, "attack": 1700, "image": "images/character8.png" }
+]
