@@ -150,6 +150,9 @@ function showResults() {
 
     document.getElementById("result-cards").innerHTML = Array.from(usedCards).map(image => {
         let card = [...deck, ...pile].find(c => c.image === image);  // imageで検索
+        console.log("Deck: ", deck);
+        console.log("Used Cards: ", usedCards);
+        console.log(image)
         console.log(card);  // カードが正しく見つかるか確認
         return `<div class="result-card">
             <img src="${image}" width="100" height="150">
