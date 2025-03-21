@@ -152,7 +152,7 @@ function showResults() {
         let card = [...deck, ...pile].find(c => c.image === image);
         return `<div class="result-card">
             <img src="${image}" width="100" height="150">
-            <p>攻撃力: ${card ? card.attack : "不明"}</p>
+            <p>攻撃力: "${attack}"</p>
         </div>`;
     }).join("");
 }
