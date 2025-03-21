@@ -5,10 +5,24 @@ let pile = [];
 let currentCards = [];
 let currentPoints = 2; // 最初の得点は2点
 
-async function startGame() {
-    const playerInput = document.getElementById("player-names").value;
-    players = playerInput.split(",").map(name => ({ name: name.trim(), score: 0 }));
+function addPlayer() {
+    const playerNameInput = document.getElementById("player-name-input");
+    const playerList = document.getElementById("player-list");
+    let playerName = playerNameInput.value.trim();
+    if (playerName) {
+        players.push({ name: playerName, score: 0 });
+        let listItem = document.createElement("li");
+        listItem.innerText = playerName;
+        playerList.appendChild(listItem);
+        playerNameInput.value = "";
+    }
+}
 
+async function startGame() {
+    if (players.length === 0) {
+        alert("プレイヤーを追加してください。");
+        return;
+    }
     document.getElementById("title-screen").style.display = "none";
     document.getElementById("game-area").style.display = "block";
 
