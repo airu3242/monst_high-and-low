@@ -35,6 +35,7 @@ async function loadCards() {
     try {
         const response = await fetch("cards.json");
         deck = await response.json();
+        console.log("Deck loaded successfully:", deck); // 成功時にdeckの中身を確認
         deck = shuffle(deck);
     } catch (error) {
         console.error("JSONの読み込みに失敗しました", error);
