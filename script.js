@@ -57,7 +57,7 @@ function drawInitialCards() {
 function drawOneCard() {
     if (deck.length > 0) {
         let newCard = getUniqueCards(1)[0];
-        pile.push(newCard);
+        if (newCard) pile.push(newCard);
     }
 }
 
@@ -74,6 +74,8 @@ function getUniqueCards(count) {
 }
 
 function chooseCard(index) {
+    if (currentCards.length < 2) return;
+
     let selectedCard = currentCards[index];
     let otherCard = currentCards[1 - index];
     let currentPlayer = players[currentTurn];
@@ -84,17 +86,23 @@ function chooseCard(index) {
         currentPlayer.score += currentPoints;
         currentPoints = 2; // 正解したら次のターンの得点はリセット
         pile = [];
-        drawInitialCards();
+        if (deck.length > 0) {
+            drawInitialCards();
+        } else {
+            showResults();
+        }
     } else {
         document.getElementById("wrong-sound").play();
         showPopup(`${currentPlayer.name} 不正解！`);
         pile.push(currentCards[0], currentCards[1]);
         drawOneCard();
-        currentCards = [...pile.slice(-2)];
+        if (pile.length >= 2) {
+            currentCards = [...pile.slice(-2)];
+        }
         currentPoints++; // 間違えたら次のターンの得点が増加
     }
 
-    if (deck.length === 0) {
+    if (deck.length === 0 && pile.length < 2) {
         showResults();
     } else {
         nextTurn();
@@ -140,11 +148,13 @@ function showResults() {
         `<p>${player.name}: ${player.score}ポイント</p>`
     ).join("");
 
-    document.getElementById("result-cards").innerHTML = Array.from(usedCards).map(image =>
-        `<div class="result-card">
+    document.getElementById("result-cards").innerHTML = Array.from(usedCards).map(image => {
+        let card = [...deck, ...pile].find(c => c.image === image);
+        return `<div class="result-card">
             <img src="${image}" width="100" height="150">
-        </div>`
-    ).join("");
+            <p>攻撃力: ${card ? card.attack : "不明"}</p>
+        </div>`;
+    }).join("");
 }
 
 function restartGame() {
