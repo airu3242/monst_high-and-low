@@ -152,7 +152,7 @@ function showResults() {
         let card = deck.concat(pile).find(c => c.image === image);  // deckとpileを結合して検索
         return `<div class="result-card">
             <img src="${image}" width="100" height="150">
-            <p>攻撃力: ${card ? card.attack : "不明"}</p>
+            <p>攻撃力: ${card ? card.attack : card.attack}</p>
         </div>`;
     }).join("");
 }
