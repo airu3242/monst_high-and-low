@@ -3,7 +3,7 @@ let currentTurn = 0;
 let deck = [];
 let pile = [];
 let currentCards = [];
-let usedCards = new Set();  // 使われたカードのセット
+let usedCards = new Set();  // 使われたカードのセット (カードオブジェクト全体を格納)
 let currentPoints = 2; // 最初の得点は2点
 
 function addPlayer() {
@@ -66,7 +66,7 @@ function getUniqueCards(count) {
     while (selectedCards.length < count && deck.length > 0) {
         let card = deck.pop();
         if (!usedCards.has(card.image)) {
-            usedCards.add(card.image);  // 画像だけでなくカード全体を使う
+            usedCards.add(card.image);  // 画像名でなくカード全体を使用
             selectedCards.push(card);
         }
     }
@@ -149,10 +149,10 @@ function showResults() {
     ).join("");
 
     document.getElementById("result-cards").innerHTML = Array.from(usedCards).map(image => {
-        let card = deck.concat(pile).find(c => c.image === image);  // deckとpileを結合して検索
+        let card = [...deck, ...pile].find(c => c.image === image);  // deck と pile を結合して検索
         return `<div class="result-card">
             <img src="${image}" width="100" height="150">
-            <p>攻撃力: ${card ? card.attack : card.attack}</p>
+            <p>攻撃力: ${card ? card.attack : "不明"}</p>
         </div>`;
     }).join("");
 }
