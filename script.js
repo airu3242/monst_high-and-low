@@ -3,6 +3,7 @@ let currentTurn = 0;
 let deck = [];
 let pile = [];
 let currentCards = [];
+let currentPoints = 2; // 最初の得点は2点
 
 async function startGame() {
     const playerInput = document.getElementById("player-names").value;
@@ -21,7 +22,7 @@ async function loadCards() {
         deck = await response.json();
         deck = shuffle(deck);
     } catch (error) {
-        console.error("JSONの読み込みに失敗しました。", error);
+        console.error("JSONの読み込みに失敗しました", error);
     }
 }
 
@@ -51,16 +52,18 @@ function chooseCard(index) {
 
     if (selectedCard.attack > otherCard.attack) {
         document.getElementById("correct-sound").play();
-        alert(`${currentPlayer.name} 正解！`);
-        currentPlayer.score += 1;
+        showPopup(`${currentPlayer.name} 正解！ ${selectedCard.attack} vs ${otherCard.attack}`);
+        currentPlayer.score += currentPoints;
+        currentPoints = 2; // 正解したら次のターンの得点はリセット
         pile = [];
         drawInitialCards();
     } else {
         document.getElementById("wrong-sound").play();
-        alert(`${currentPlayer.name} 不正解！`);
+        showPopup(`${currentPlayer.name} 不正解！`);
         pile.push(currentCards[0], currentCards[1]);
         drawOneCard();
         currentCards = [...pile.slice(-2)];
+        currentPoints++; // 間違えたら次のターンの得点が増加
     }
 
     if (deck.length === 0) {
@@ -85,13 +88,20 @@ function updateDisplay() {
         </div>`
     ).join("");
 
-    document.getElementById("pile").innerHTML = pile.map(card =>
-        `<img src="${card.image}" width="100" height="150">`
-    ).join("");
+    document.getElementById("pile-points").innerText = `次の得点: ${currentPoints}点`;
 
     document.getElementById("player-scores").innerHTML = players.map(player =>
         `<p>${player.name}: ${player.score}ポイント</p>`
     ).join("");
+}
+
+function showPopup(message) {
+    let popup = document.getElementById("popup-message");
+    popup.innerText = message;
+    popup.style.display = "block";
+    setTimeout(() => {
+        popup.style.display = "none";
+    }, 2000);
 }
 
 function showResults() {
@@ -102,7 +112,7 @@ function showResults() {
         `<p>${player.name}: ${player.score}ポイント</p>`
     ).join("");
 
-    document.getElementById("result-cards").innerHTML = pile.map(card =>
+    document.getElementById("result-cards").innerHTML = [...pile, ...currentCards].map(card =>
         `<div class="result-card">
             <img src="${card.image}" width="100" height="150">
             <p>${card.attack}</p>
