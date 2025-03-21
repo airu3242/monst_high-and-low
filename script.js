@@ -3,6 +3,7 @@ let currentTurn = 0;
 let deck = [];
 let pile = [];
 let currentCards = [];
+let usedCards = new Set();
 let currentPoints = 2; // 最初の得点は2点
 
 function addPlayer() {
@@ -49,14 +50,27 @@ function drawInitialCards() {
         showResults();
         return;
     }
-    currentCards = [deck.pop(), deck.pop()];
+    currentCards = getUniqueCards(2);
     updateDisplay();
 }
 
 function drawOneCard() {
     if (deck.length > 0) {
-        pile.push(deck.pop());
+        let newCard = getUniqueCards(1)[0];
+        pile.push(newCard);
     }
+}
+
+function getUniqueCards(count) {
+    let selectedCards = [];
+    while (selectedCards.length < count && deck.length > 0) {
+        let card = deck.pop();
+        if (!usedCards.has(card.image)) {
+            usedCards.add(card.image);
+            selectedCards.push(card);
+        }
+    }
+    return selectedCards;
 }
 
 function chooseCard(index) {
@@ -126,10 +140,9 @@ function showResults() {
         `<p>${player.name}: ${player.score}ポイント</p>`
     ).join("");
 
-    document.getElementById("result-cards").innerHTML = [...pile, ...currentCards].map(card =>
+    document.getElementById("result-cards").innerHTML = Array.from(usedCards).map(image =>
         `<div class="result-card">
-            <img src="${card.image}" width="100" height="150">
-            <p>${card.attack}</p>
+            <img src="${image}" width="100" height="150">
         </div>`
     ).join("");
 }
