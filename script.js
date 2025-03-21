@@ -100,12 +100,13 @@ function chooseCard(index) {
             currentCards = [...pile.slice(-2)];
         }
         currentPoints++; // 間違えたら次のターンの得点が増加
-    }
-
-    if (deck.length === 0 && pile.length < 2) {
-        showResults();
-    } else {
-        nextTurn();
+        
+        // ゲーム終了判定: deckとpileにカードが足りない場合
+        if (deck.length === 0 && pile.length < 2) {
+            showResults(); // ゲーム終了画面を表示
+        } else {
+            nextTurn(); // 不正解の場合でもターンを進める
+        }
     }
 }
 
