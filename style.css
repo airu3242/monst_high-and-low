@@ -39,12 +39,19 @@ li {
     margin: 5px;
 }
 
-#result-cards {
-    display: flex;
-    justify-content: center;
-    gap: 10px;
-    flex-wrap: wrap; /* 折り返し対応 */
+.result-entry {
+    margin-bottom: 20px;
 }
+
+.result-card {
+    margin: 10px 0;
+}
+
+.result-card img {
+    display: block;
+    margin: 0 auto;
+}
+
 
 /* JSONに登録されている全キャラクター表示用 */
 #character-list {
