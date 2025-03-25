@@ -40,13 +40,14 @@ li {
 }
 
 .result-entry {
-    margin-bottom: 20px;
+    margin-bottom: 30px; /* 各結果の間に余白を追加 */
 }
 
 .result-cards {
     display: flex;
-    justify-content: space-between;
     align-items: center;
+    justify-content: center; /* 中央揃え */
+    gap: 10px; /* 画像と比較記号の間隔を調整 */
 }
 
 .result-card {
@@ -56,13 +57,17 @@ li {
 }
 
 .comparison {
-    margin: 0 10px;
+    font-size: 24px; /* 比較記号を少し大きくして目立たせる */
+    font-weight: bold;
+    margin: 0 5px; /* 画像と比較記号の間隔を縮める */
 }
 
 .answer-message {
     text-align: center;
     margin-top: 10px;
     font-size: 16px;
+    padding-bottom: 10px; /* 下に余白を追加 */
+    border-bottom: 1px solid #ccc; /* 仕切り線を追加（不要なら削除可） */
 }
 
 /* JSONに登録されている全キャラクター表示用 */
