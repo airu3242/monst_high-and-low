@@ -1,10 +1,502 @@
 [
-    { "id": 1, "attack": 1500, "image": "images/character1.png" },
-    { "id": 2, "attack": 1200, "image": "images/character2.png" },
-    { "id": 3, "attack": 1800, "image": "images/character3.png" },
-    { "id": 4, "attack": 1300, "image": "images/character4.png" },
-    { "id": 5, "attack": 1600, "image": "images/character5.png" },
-    { "id": 6, "attack": 1100, "image": "images/character6.png" },
-    { "id": 7, "attack": 1400, "image": "images/character7.png" },
-    { "id": 8, "attack": 1700, "image": "images/character8.png" }
+  {
+    "id": 1,
+    "attack": 28314,
+    "image": "images/重キ衆望ノ幻像 デティアカル.png"
+  },
+  {
+    "id": 2,
+    "attack": 32351,
+    "image": "images/芸術の「再生者」 ルネサンス.png"
+  },
+  {
+    "id": 3,
+    "attack": 29904,
+    "image": "images/芸術の「復興者」 ルネサンス.png"
+  },
+  {
+    "id": 4,
+    "attack": 31602,
+    "image": "images/好奇爆発の希望少女 パンドラ.png"
+  },
+  {
+    "id": 5,
+    "attack": 27808,
+    "image": "images/渇欲の騎士 トリスタン.png"
+  },
+  {
+    "id": 6,
+    "attack": 45219,
+    "image": "images/悲劇を破る「反抗者」 アナスタシア.png"
+  },
+  {
+    "id": 7,
+    "attack": 33399,
+    "image": "images/新生・堕天の王 ルシファー.png"
+  },
+  {
+    "id": 8,
+    "attack": 34654,
+    "image": "images/神なる正義の体現者 カマエル.png"
+  },
+  {
+    "id": 9,
+    "attack": 31896,
+    "image": "images/四神召喚の「救世主」 キリンジ.png"
+  },
+  {
+    "id": 10,
+    "attack": 33745,
+    "image": "images/「覚醒天使」 カノン.png"
+  },
+  {
+    "id": 11,
+    "attack": 45021,
+    "image": "images/ヴァニタス：虚ろなる者.png"
+  },
+  {
+    "id": 12,
+    "attack": 33013,
+    "image": "images/久遠：再会＜エクスチェンジ＞.png"
+  },
+  {
+    "id": 13,
+    "attack": 43207,
+    "image": "images/退廃炎上のデビルズ・パンク・インフェルノ.png"
+  },
+  {
+    "id": 14,
+    "attack": 28916,
+    "image": "images/加護を与えし星の創世神 盤古.png"
+  },
+  {
+    "id": 15,
+    "attack": 45138,
+    "image": "images/禁忌ノ邪鬼 阿頼耶.png"
+  },
+  {
+    "id": 16,
+    "attack": 42351,
+    "image": "images/火生なる天下五剣・真打 鬼丸国綱.png"
+  },
+  {
+    "id": 17,
+    "attack": 33122,
+    "image": "images/死霊を従えし狂気の女帝 武則天.png"
+  },
+  {
+    "id": 18,
+    "attack": 45100,
+    "image": "images/ 変革を起こす「詠い手」 ちはや.png"
+  },
+  {
+    "id": 19,
+    "attack": 30321,
+    "image": "images/「激怒」の龍娘 ゲキリン.png"
+  },
+  {
+    "id": 20,
+    "attack": 33466,
+    "image": "images/不死の霊薬 アムリタ.png"
+  },
+  {
+    "id": 21,
+    "attack": 29941,
+    "image": "images/輝きのサニ・エージェント ルミナス.png"
+  },
+  {
+    "id": 22,
+    "attack": 45238,
+    "image": "images/世界を歪曲するもの ディスモルフォ.png"
+  },
+  {
+    "id": 23,
+    "attack": 25131,
+    "image": "images/ヤクモ：巫女姫霊装.png"
+  },
+  {
+    "id": 24,
+    "attack": 30439,
+    "image": "images/ヤクモ：大荒神武装.png"
+  },
+  {
+    "id": 25,
+    "attack": 32505,
+    "image": "images/マサムネ：使命の閃刃.png"
+  },
+  {
+    "id": 26,
+    "attack": 30000,
+    "image": "images/親和をもたらす情愛の天使 マナ.png"
+  },
+  {
+    "id": 27,
+    "attack": 30422,
+    "image": "images/エル：堕天モード.png"
+  },
+  {
+    "id": 28,
+    "attack": 27258,
+    "image": "images/エル：破邪モード.png"
+  },
+  {
+    "id": 29,
+    "attack": 29539,
+    "image": "images/獄狼魔王 ビゼラー.png"
+  },
+  {
+    "id": 30,
+    "attack": 40289,
+    "image": "images/勇気を与えし救星の天空神 オニャンコポン.png"
+  },
+  {
+    "id": 31,
+    "attack": 28058,
+    "image": "images/真獲神 ハンターキング.png"
+  },
+  {
+    "id": 32,
+    "attack": 28365,
+    "image": "images/夢を届ける宇宙少女 星霜.png"
+  },
+  {
+    "id": 33,
+    "attack": 30375,
+    "image": "images/怪盗アルセーヌ：アナーキーモード.png"
+  },
+  {
+    "id": 34,
+    "attack": 25975,
+    "image": "images/ウィッチ系音楽ユニット マジカル☆メルルンず.png"
+  },
+  {
+    "id": 35,
+    "attack": 27429,
+    "image": "images/創世の始神 イザナギ.png"
+  },
+  {
+    "id": 36,
+    "attack": 30614,
+    "image": "images/笑顔を釣り上げし笑福神 えびす.png"
+  },
+  {
+    "id": 37,
+    "attack": 31618,
+    "image": "images/愛に魅せられし黄金の画家 クリムト.png"
+  },
+  {
+    "id": 38,
+    "attack": 30009,
+    "image": "images/心理を掴む名探偵 シャーロック・ホームズ.png"
+  },
+  {
+    "id": 39,
+    "attack": 26162,
+    "image": "images/三千世界の縁を結びし極楽アイドル 弁財天.png"
+  },
+  {
+    "id": 40,
+    "attack": 39170,
+    "image": "images/艶麗なる誘いの大歌仙 小野小町.png"
+  },
+  {
+    "id": 41,
+    "attack": 32446,
+    "image": "images/真獣神 ゴッドストライク.png"
+  },
+  {
+    "id": 42,
+    "attack": 39323,
+    "image": "images/未来を解き放つ因果律の悪魔 ラプラス.png"
+  },
+  {
+    "id": 43,
+    "attack": 38100,
+    "image": "images/恵みをもたらす水精の女王 テキーラ.png"
+  },
+  {
+    "id": 44,
+    "attack": 50260,
+    "image": "images/魔界に轟く孤高の悪魔 ディアボロス.png"
+  },
+  {
+    "id": 45,
+    "attack": 34024,
+    "image": "images/天啓を授けし楽園の守護者 ガブリエル.png"
+  },
+  {
+    "id": 46,
+    "attack": 24147,
+    "image": "images/煌く星読みの大魔術師 マーリン.png"
+  },
+  {
+    "id": 47,
+    "attack": 32023,
+    "image": "images/切断系ハッピーユニット キル×ユア×アイドル.png"
+  },
+  {
+    "id": 48,
+    "attack": 28891,
+    "image": "images/黄泉津大神 イザナミ.png"
+  },
+  {
+    "id": 49,
+    "attack": 33562,
+    "image": "images/孤独を包む音楽の大天使 サンダルフォン.png"
+  },
+  {
+    "id": 50,
+    "attack": 34965,
+    "image": "images/久遠：死神＜シロフォニスト＞.png"
+  },
+  {
+    "id": 51,
+    "attack": 40357,
+    "image": "images/猛キ垂範ノ幻像 ペグイル.png"
+  },
+  {
+    "id": 52,
+    "attack": 35823,
+    "image": "images/真炎の女神 アグナムート.png"
+  },
+  {
+    "id": 53,
+    "attack": 30411,
+    "image": "images/人理を掴む異彩の相棒 ワトソン.png"
+  },
+  {
+    "id": 54,
+    "attack": 45292,
+    "image": "images/切切なる心の「管理者」 ジャック・ザ・リッパー.png"
+  },
+  {
+    "id": 55,
+    "attack": 28810,
+    "image": "images/天上天下の大泥棒 石川五右衛門.png"
+  },
+  {
+    "id": 56,
+    "attack": 32014,
+    "image": "images/祝福を届けし聖告の大天使 ガブリエル.png"
+  },
+  {
+    "id": 57,
+    "attack": 26167,
+    "image": "images/ネオ：ハローワールド・モード.png"
+  },
+  {
+    "id": 58,
+    "attack": 37512,
+    "image": "images/暗黒総統 デスアーク.png"
+  },
+  {
+    "id": 59,
+    "attack": 28986,
+    "image": "images/約束を結びし大賢者 モーセ.png"
+  },
+  {
+    "id": 60,
+    "attack": 36462,
+    "image": "images/絶対公平の裁判官 包青天.png"
+  },
+  {
+    "id": 61,
+    "attack": 45140,
+    "image": "images/惨刑の「執行者」 モンテ・クリスト.png"
+  },
+  {
+    "id": 62,
+    "attack": 32888,
+    "image": "images/スーパーインフィニティ戦士 アミダ.png"
+  },
+  {
+    "id": 63,
+    "attack": 32016,
+    "image": "images/想いを繋ぐ希望の聖剣 エクスカリバー.png"
+  },
+  {
+    "id": 64,
+    "attack": 28828,
+    "image": "images/スターダスト・エージェント スピカ.png"
+  },
+  {
+    "id": 65,
+    "attack": 32123,
+    "image": "images/裁きを与えし発揚の大天使 ミカエル.png"
+  },
+  {
+    "id": 66,
+    "attack": 29728,
+    "image": "images/心を洗う快活女優 ラクリィ.png"
+  },
+  {
+    "id": 67,
+    "attack": 29142,
+    "image": "images/不思議系きのこ占い師 マムル.png"
+  },
+  {
+    "id": 68,
+    "attack": 30596,
+    "image": "images/アルビレオ：フロム・スターダスト.png"
+  },
+  {
+    "id": 69,
+    "attack": 35029,
+    "image": "images/マサムネ：約束の焔刃.png"
+  },
+  {
+    "id": 70,
+    "attack": 28494,
+    "image": "images/小悪魔ダンスユニット モノノケ少女.png"
+  },
+  {
+    "id": 71,
+    "attack": 32169,
+    "image": "images/巌窟の「復讐者」 モンテ・クリスト.png"
+  },
+  {
+    "id": 72,
+    "attack": 41202,
+    "image": "images/世界を規戒する者 ユビレギリ.png"
+  },
+  {
+    "id": 73,
+    "attack": 38865,
+    "image": "images/南方の島の守護妖精 泡盛.png"
+  },
+  {
+    "id": 74,
+    "attack": 30345,
+    "image": "images/寛大なる旋律に沈めし者 ラルガメンテ.png"
+  },
+  {
+    "id": 75,
+    "attack": 48950,
+    "image": "images/sinギルティ：断罪.png"
+  },
+  {
+    "id": 76,
+    "attack": 31846,
+    "image": "images/凛然たる幕末の狙撃手 新島八重.png"
+  },
+  {
+    "id": 77,
+    "attack": 20015,
+    "image": "images/葬頭河の「送り手」 三途.png"
+  },
+  {
+    "id": 78,
+    "attack": 34014,
+    "image": "images/未知を愉しむ驚異の国の絶対女王 アリス.png"
+  },
+  {
+    "id": 79,
+    "attack": 28377,
+    "image": "images/スターダスト・エージェント シリウス.png"
+  },
+  {
+    "id": 80,
+    "attack": 51670,
+    "image": "images/狂おしき死の薔薇 ハーレーX.png"
+  },
+  {
+    "id": 81,
+    "attack": 25043,
+    "image": "images/アリババのおとも シロイノ.png"
+  },
+  {
+    "id": 82,
+    "attack": 32010,
+    "image": "images/宇宙を解放する恐怖の大王 ノストラダムス.png"
+  },
+  {
+    "id": 83,
+    "attack": 33519,
+    "image": "images/「金剛召喚」 バサラ.png"
+  },
+  {
+    "id": 84,
+    "attack": 41060,
+    "image": "images/世界を露呈する者 カカゴセデク.png"
+  },
+  {
+    "id": 85,
+    "attack": 30657,
+    "image": "images/ナイトメア：トラベルスタイル.png"
+  },
+  {
+    "id": 86,
+    "attack": 29394,
+    "image": "images/安寧に導く潔浄の海神 ワタツミ.png"
+  },
+  {
+    "id": 87,
+    "attack": 29659,
+    "image": "images/眩キ積善ノ幻像 ロヴァー.png"
+  },
+  {
+    "id": 88,
+    "attack": 34029,
+    "image": "images/想いを織り成す紅蜘蛛 小野小町.png"
+  },
+  {
+    "id": 89,
+    "attack": 30048,
+    "image": "images/神機三煌 神威.png"
+  },
+  {
+    "id": 90,
+    "attack": 32000,
+    "image": "images/絆を守りし情愛の解放者 マナ・アニマ.png"
+  },
+  {
+    "id": 91,
+    "attack": 38408,
+    "image": "images/王国騎士長ロビン・フッド.png"
+  },
+  {
+    "id": 92,
+    "attack": 50558,
+    "image": "images/公正なる裁きを与えし冥界の主 閻魔大王.png"
+  },
+  {
+    "id": 93,
+    "attack": 30928,
+    "image": "images/魂震わす業魔調伏の魔法童女 風神雷神.png"
+  },
+  {
+    "id": 94,
+    "attack": 29244,
+    "image": "images/ナイトメア：ドリームスタイル.png"
+  },
+  {
+    "id": 95,
+    "attack": 30194,
+    "image": "images/奈落より顕現せし貴公子 タルタロス.png"
+  },
+  {
+    "id": 96,
+    "attack": 27860,
+    "image": "images/清キ啓蒙ノ幻像 エンベズラー.png"
+  },
+  {
+    "id": 97,
+    "attack": 31912,
+    "image": "images/キラキラ輝く笑顔のキズナ Two for all.png"
+  },
+  {
+    "id": 98,
+    "attack": 40021,
+    "image": "images/絆を纏う真闘士 リン・ツー.png"
+  },
+  {
+    "id": 99,
+    "attack": 27229,
+    "image": "images/篤キ狂信ノ幻像 フォーサー.png"
+  },
+  {
+    "id": 100,
+    "attack": 33712,
+    "image": "images/マギア：純白の魔法少女.png"
+  }
 ]
