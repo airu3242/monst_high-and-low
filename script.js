@@ -37,7 +37,6 @@ async function loadCards() {
         deck = await response.json();
         deck = deck.map(card => ({ ...card, image: encodeURI(card.image) }));
         deck = shuffle(deck);
-        displayAllCharacters();
     } catch (error) {
         console.error("JSONの読み込みに失敗しました", error);
     }
@@ -94,18 +93,6 @@ function updateDisplay() {
     document.getElementById("pile-points").innerText = `次の得点: ${currentPoints}点`;
     document.getElementById("player-scores").innerHTML = players.map(player =>
         `<p>${player.name}: ${player.score}ポイント</p>`
-    ).join("");
-}
-
-function displayAllCharacters() {
-    const container = document.createElement("div");
-    container.id = "character-list";
-    document.body.appendChild(container);
-    container.innerHTML = deck.map(card =>
-        `<div class="character">
-            <img src="${card.image}" width="100" height="150">
-            <p>${card.name} (攻撃力: ${card.attack})</p>
-        </div>`
     ).join("");
 }
 
