@@ -43,19 +43,26 @@ li {
     margin-bottom: 20px;
 }
 
-.result-card {
-    margin: 10px 0;
-}
-
-.result-card img {
-    display: block;
-    margin: 0 auto;
-}
-
-#result-cards {
+.result-cards {
     display: flex;
-    flex-direction: column; /* 縦並びにする */
-    align-items: center; /* 中央に揃える */
+    justify-content: space-between;
+    align-items: center;
+}
+
+.result-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.comparison {
+    margin: 0 10px;
+}
+
+.answer-message {
+    text-align: center;
+    margin-top: 10px;
+    font-size: 16px;
 }
 
 /* JSONに登録されている全キャラクター表示用 */
