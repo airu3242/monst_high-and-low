@@ -66,7 +66,7 @@ li {
     text-align: center;
     margin-top: 10px;
     font-size: 16px;
-    padding-bottom: 10px; /* 下に余白を追加 */
+    padding-bottom: 0px; /* 下に余白を追加 */
     border-top: 1px solid #ccc; /* 仕切り線を追加（不要なら削除可） */
 }
 
