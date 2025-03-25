@@ -196,31 +196,26 @@ function showResults() {
 
         // 比較結果を計算
         let comparison = card.attack > nextCard.attack ? '>' : '<';
-        let resultMessage = (card.attack > nextCard.attack) === (card.isCorrect)
-            ? '正解'
-            : '不正解';
-
-        // 結果の表示: 正解か不正解かを判断
-        let answerMessage = (card.isCorrect) ? `${card.player} 正解！` : `${card.player} 不正解！`;
+        let answerMessage = card.isCorrect ? `${card.player} 正解！` : `${card.player} 不正解！`;
 
         // 不正解時は回答を表示しない
         if (!card.isCorrect) {
             answerMessage = `${card.player} 不正解！`;
         }
 
+        // 一問一行の表示形式
         return `
-            <div class="result-card-pair" style="display: flex; align-items: center;">
-                <div class="result-card">
-                    <img src="${card.image}" width="150" height="150">
-                    <p>攻撃力: ${card.attack}</p>
-                </div>
-                <p style="margin: 0 10px;">${comparison}</p>
-                <div class="result-card">
-                    <img src="${nextCard.image}" width="150" height="150">
-                    <p>攻撃力: ${nextCard.attack}</p>
-                </div>
-                <p>${card.player}の回答: ${card.attack} ${comparison} ${nextCard.attack} → ${answerMessage}</p>
+            <p>${card.player}の回答: ${card.attack} ${comparison} ${nextCard.attack} → ${answerMessage}</p>
+            <div class="result-card" style="display: inline-block;">
+                <img src="${card.image}" width="150" height="150">
+                <p>攻撃力: ${card.attack}</p>
             </div>
+            <p>${comparison}</p>
+            <div class="result-card" style="display: inline-block;">
+                <img src="${nextCard.image}" width="150" height="150">
+                <p>攻撃力: ${nextCard.attack}</p>
+            </div>
+            <br>
         `;
     }).join("");
 }
