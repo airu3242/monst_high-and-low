@@ -88,6 +88,12 @@ function chooseCard(index) {
         showPopup(`${currentPlayer.name} 正解！ ${selectedCard.attack} vs ${otherCard.attack}`);
         currentPlayer.score += currentPoints;
         currentPoints = 2; // 正解したら次のターンの得点はリセット
+
+        // ゲームが終了するか確認
+        if (currentPlayer.score >= 20) {
+            showResults();
+            return; // 正解後、ゲーム終了
+        }
     } else {
         document.getElementById("wrong-sound").play();
         showPopup(`${currentPlayer.name} 不正解！`);
@@ -99,12 +105,8 @@ function chooseCard(index) {
         currentPoints++; // 間違えたら次のターンの得点が増加
     }
 
-    // ここでゲームが終了するかどうかを判定
-    if (currentPlayer.score >= 20) {
-        showResults();
-    } else {
-        nextTurn();
-    }
+    // 正解不正解に関わらずターンを進める
+    nextTurn();
 }
 
 function nextTurn() {
@@ -118,7 +120,7 @@ function updateDisplay() {
 
     document.getElementById("current-cards").innerHTML = currentCards.map((card, index) =>
         `<div class="card" onclick="chooseCard(${index})">
-            <img src="${card.image}" width="200" height="200">
+            <img src="${card.image}" width="150" height="150">
             <div class="attack-value" style="display: none;">${card.attack}</div>
         </div>`
     ).join("");
@@ -150,7 +152,7 @@ function showResults() {
     document.getElementById("result-cards").innerHTML = Array.from(usedCards).map(image => {
         let card = [...deck, ...pile].find(c => c.image === image);
         return `<div class="result-card">
-            <img src="${image}" width="100" height="150">
+            <img src="${image}" width="150" height="150">
             <p>攻撃力: ${card ? card.attack : "不明"}</p>
         </div>`;
     }).join("");
