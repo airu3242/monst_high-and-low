@@ -190,7 +190,7 @@ function showResults() {
     ).join("");
 
     // リザルト表示: 画像、比較、回答者とその正誤を含む
-    document.getElementById("result-cards").innerHTML = usedCardData.map((card, index) => {
+    let resultHTML = usedCardData.map((card, index) => {
         // 次のカードとのペアを取得
         let nextCard = usedCardData[index + 1];
         if (!nextCard) return ""; // 最後のカードペアはスキップ
@@ -204,23 +204,24 @@ function showResults() {
             answerMessage = `${card.player} 不正解！`;
         }
 
-        // 一問一行の表示形式
+        // 各セットを<div>で囲むことで改行
         return `
-            <p>${card.player}の回答: ${card.attack} ${comparison} ${nextCard.attack} → ${answerMessage}</p>
-            <br>
-            <div class="result-card">
-                <img src="${card.image}" width="150" height="150">
-                <p>攻撃力: ${card.attack}</p>
+            <div class="result-entry">
+                <p>${card.player}の回答: ${card.attack} ${comparison} ${nextCard.attack} → ${answerMessage}</p>
+                <div class="result-card">
+                    <img src="${card.image}" width="150" height="150">
+                    <p>攻撃力: ${card.attack}</p>
+                </div>
+                <p>${comparison}</p>
+                <div class="result-card">
+                    <img src="${nextCard.image}" width="150" height="150">
+                    <p>攻撃力: ${nextCard.attack}</p>
+                </div>
             </div>
-            <p>${comparison}</p>
-            <div class="result-card">
-                <img src="${nextCard.image}" width="150" height="150">
-                <p>攻撃力: ${nextCard.attack}</p>
-                <br>
-            </div>
-            <br>
         `;
     }).join("");
+
+    document.getElementById("result-cards").innerHTML = resultHTML;
 }
 
 function restartGame() {
