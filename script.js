@@ -79,7 +79,7 @@ function chooseCard(index) {
 
     let isCorrect = selectedCard.attack > otherCard.attack;
     let comparisonResult = isCorrect ? `${selectedCard.attack} > ${otherCard.attack}` : ""; 
-    let resultMessage = `${currentPlayer.name}の回答: ${comparisonResult} ${isCorrect ? "→ 正解！" : "→ 不正解！"}`;
+    let resultMessage = `「${currentPlayer.name}」の回答: ${comparisonResult} ${isCorrect ? "→ 正解！" : "→ 不正解！"}`;
 
     showPopup(resultMessage.trim()); // 余計なスペースを削除
 
@@ -170,7 +170,7 @@ function showResults() {
 
         return `
             <div class="result-entry">
-                <p class="answer-message">${entry.player}の回答: ${entry.attack1} ${comparison} ${entry.attack2} → ${resultText}</p>
+                <p class="answer-message">「${entry.player}」の回答: ${entry.attack1} ${comparison} ${entry.attack2} → ${resultText}</p>
                 <div class="result-cards">
                     <div class="result-card">
                         <img src="${entry.image1}" width="150" height="150">

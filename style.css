@@ -67,7 +67,7 @@ li {
     margin-top: 10px;
     font-size: 16px;
     padding-bottom: 10px; /* 下に余白を追加 */
-    border-bottom: 1px solid #ccc; /* 仕切り線を追加（不要なら削除可） */
+    border-top: 1px solid #ccc; /* 仕切り線を追加（不要なら削除可） */
 }
 
 /* JSONに登録されている全キャラクター表示用 */
