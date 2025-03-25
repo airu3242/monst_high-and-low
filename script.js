@@ -78,53 +78,36 @@ function chooseCard(index) {
     let currentPlayer = players[currentTurn];
 
     // 比較結果を決定
-    let comparisonResult = selectedCard.attack > otherCard.attack ? '>' : '<';
-    let correctMessage = `${currentPlayer.name}の回答: ${selectedCard.attack} ${comparisonResult} ${otherCard.attack}`;
-    let incorrectMessage = `${currentPlayer.name}の回答:`;
+    let isCorrect = selectedCard.attack > otherCard.attack;
+    let comparisonResult = isCorrect ? '>' : '<';
+    let resultMessage = `${currentPlayer.name}の回答: ${selectedCard.attack} ${comparisonResult} ${otherCard.attack}`;
 
-    // 正解
-    if (selectedCard.attack > otherCard.attack) {
+    if (isCorrect) {
         document.getElementById("correct-sound").play();
-        correctMessage += " → 正解！";
-        showPopup(correctMessage);
+        resultMessage += " → 正解！";
+        showPopup(resultMessage);
         currentPlayer.score += currentPoints;
-        currentPoints = 2; 
+        currentPoints = 2;
+
+        usedCardData.push({
+            player: currentPlayer.name,
+            image1: selectedCard.image,
+            attack1: selectedCard.attack,
+            image2: otherCard.image,
+            attack2: otherCard.attack,
+            isCorrect: true
+        });
 
         if (currentPlayer.score >= 20) {
-            usedCardData.push({ 
-                player: currentPlayer.name, 
-                image: selectedCard.image, 
-                attack: selectedCard.attack, 
-                isCorrect: true 
-            });
-            usedCardData.push({ 
-                player: currentPlayer.name, 
-                image: otherCard.image, 
-                attack: otherCard.attack, 
-                isCorrect: true 
-            });
             showResults();
             return;
         }
 
-        usedCardData.push({ 
-            player: currentPlayer.name, 
-            image: selectedCard.image, 
-            attack: selectedCard.attack, 
-            isCorrect: true 
-        });
-        usedCardData.push({ 
-            player: currentPlayer.name, 
-            image: otherCard.image, 
-            attack: otherCard.attack, 
-            isCorrect: true 
-        });
-
         drawInitialCards();
     } else {
         document.getElementById("wrong-sound").play();
-        incorrectMessage += "不正解！";
-        showPopup(incorrectMessage);
+        resultMessage += " → 不正解！";
+        showPopup(resultMessage);
         pile.push(currentCards[0], currentCards[1]);
         drawOneCard();
         if (pile.length >= 2) {
@@ -132,17 +115,13 @@ function chooseCard(index) {
         }
         currentPoints++;
 
-        usedCardData.push({ 
-            player: currentPlayer.name, 
-            image: selectedCard.image, 
-            attack: selectedCard.attack, 
-            isCorrect: false 
-        });
-        usedCardData.push({ 
-            player: currentPlayer.name, 
-            image: otherCard.image, 
-            attack: otherCard.attack, 
-            isCorrect: false 
+        usedCardData.push({
+            player: currentPlayer.name,
+            image1: selectedCard.image,
+            attack1: selectedCard.attack,
+            image2: otherCard.image,
+            attack2: otherCard.attack,
+            isCorrect: false
         });
     }
 
@@ -184,45 +163,28 @@ function showResults() {
     document.getElementById("game-area").style.display = "none";
     document.getElementById("result-screen").style.display = "block";
 
-    // プレイヤーのスコアを表示
     document.getElementById("result-players").innerHTML = players.map(player =>
         `<p>${player.name}: ${player.score}ポイント</p>`
     ).join("");
 
-    // リザルト表示: 画像、比較、回答者とその正誤を含む
-    document.getElementById("result-cards").innerHTML = usedCardData.map((card, index) => {
-        // 次のカードとのペアを取得
-        let nextCard = usedCardData[index + 1];
-        if (!nextCard) return ""; // 最後のカードペアはスキップ
-
-        // 比較結果を計算
-        let comparison = card.attack > nextCard.attack ? '>' : '<';
-        let resultMessage = (card.attack > nextCard.attack) === (card.isCorrect)
-            ? '正解'
-            : '不正解';
-
-        // 結果の表示: 正解か不正解かを判断
-        let answerMessage = (card.isCorrect) ? `${card.player} 正解！` : `${card.player} 不正解！`;
-
-        // 不正解時は回答を表示しない
-        if (!card.isCorrect) {
-            answerMessage = `${card.player} 不正解！`;
-        }
+    document.getElementById("result-cards").innerHTML = usedCardData.map(entry => {
+        let comparison = entry.attack1 > entry.attack2 ? '>' : '<';
+        let resultText = entry.isCorrect ? "正解！" : "不正解！";
 
         return `
             <div class="result-entry">
                 <div class="result-cards">
                     <div class="result-card">
-                        <img src="${card.image}" width="150" height="150">
-                        <p>攻撃力: ${card.attack}</p>
+                        <img src="${entry.image1}" width="150" height="150">
+                        <p>攻撃力: ${entry.attack1}</p>
                     </div>
                     <p class="comparison">${comparison}</p>
                     <div class="result-card">
-                        <img src="${nextCard.image}" width="150" height="150">
-                        <p>攻撃力: ${nextCard.attack}</p>
+                        <img src="${entry.image2}" width="150" height="150">
+                        <p>攻撃力: ${entry.attack2}</p>
                     </div>
                 </div>
-                <p class="answer-message">${card.player}の回答: ${card.attack} ${comparison} ${nextCard.attack} → ${answerMessage}</p>
+                <p class="answer-message">${entry.player}の回答: ${entry.attack1} ${comparison} ${entry.attack2} → ${entry.player} ${resultText}</p>
             </div>
         `;
     }).join("");
