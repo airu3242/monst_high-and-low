@@ -77,9 +77,20 @@ function chooseCard(index) {
     let otherCard = currentCards[1 - index];
     let currentPlayer = players[currentTurn];
 
+    // 比較結果を決める
+    let comparisonResult = "";
+    if (selectedCard.attack > otherCard.attack) {
+        comparisonResult = `攻撃力: ${selectedCard.attack} > ${otherCard.attack}`;
+    } else if (selectedCard.attack < otherCard.attack) {
+        comparisonResult = `攻撃力: ${selectedCard.attack} < ${otherCard.attack}`;
+    } else {
+        comparisonResult = `攻撃力: ${selectedCard.attack} = ${otherCard.attack}`;
+    }
+
+    // 正解
     if (selectedCard.attack > otherCard.attack) {
         document.getElementById("correct-sound").play();
-        showPopup(`${currentPlayer.name} 正解！ ${selectedCard.attack} vs ${otherCard.attack}`);
+        showPopup(`${currentPlayer.name} 正解！ ${comparisonResult}`);
         currentPlayer.score += currentPoints;
         currentPoints = 2; 
 
@@ -90,14 +101,13 @@ function chooseCard(index) {
             return;
         }
 
-        // 正解時、次のターンで使う新しいカードを引く
         usedCardData.push({ image: selectedCard.image, attack: selectedCard.attack });
         usedCardData.push({ image: otherCard.image, attack: otherCard.attack });
 
         drawInitialCards();
     } else {
         document.getElementById("wrong-sound").play();
-        showPopup(`${currentPlayer.name} 不正解！`);
+        showPopup(`${currentPlayer.name} 不正解！ ${comparisonResult}`);
         pile.push(currentCards[0], currentCards[1]);
         drawOneCard();
         if (pile.length >= 2) {
@@ -105,7 +115,6 @@ function chooseCard(index) {
         }
         currentPoints++;
 
-        // 不正解時もカードを追加
         usedCardData.push({ image: selectedCard.image, attack: selectedCard.attack });
         usedCardData.push({ image: otherCard.image, attack: otherCard.attack });
     }
@@ -152,12 +161,25 @@ function showResults() {
         `<p>${player.name}: ${player.score}ポイント</p>`
     ).join("");
 
-    document.getElementById("result-cards").innerHTML = usedCardData.map(card =>
-        `<div class="result-card">
-            <img src="${card.image}" width="150" height="150">
-            <p>攻撃力: ${card.attack}</p>
-        </div>`
-    ).join("");
+    document.getElementById("result-cards").innerHTML = usedCardData.map((card, index) => {
+        // 2体ずつ並べて表示
+        if (index % 2 === 0) {
+            let nextCard = usedCardData[index + 1];
+            return `
+                <div class="result-card-pair">
+                    <div class="result-card">
+                        <img src="${card.image}" width="150" height="150">
+                        <p>攻撃力: ${card.attack}</p>
+                    </div>
+                    <div class="result-card">
+                        <img src="${nextCard.image}" width="150" height="150">
+                        <p>攻撃力: ${nextCard.attack}</p>
+                    </div>
+                    <p>比較: ${card.attack > nextCard.attack ? `${card.attack} > ${nextCard.attack}` : `${card.attack} < ${nextCard.attack}`}</p>
+                </div>
+            `;
+        }
+    }).join("");
 }
 
 function restartGame() {
