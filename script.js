@@ -87,13 +87,16 @@ function chooseCard(index) {
         document.getElementById("correct-sound").play();
         showPopup(`${currentPlayer.name} 正解！ ${selectedCard.attack} vs ${otherCard.attack}`);
         currentPlayer.score += currentPoints;
-        currentPoints = 2; // 正解したら次のターンの得点はリセット
+        currentPoints = 2; // 正解したら次のターンの得点をリセット
 
-        // ゲームが終了するか確認
+        // ゲーム終了判定
         if (currentPlayer.score >= 20) {
             showResults();
-            return; // 正解後、ゲーム終了
+            return;
         }
+
+        // 正解時は2枚とも新しいカードに変更
+        drawInitialCards();
     } else {
         document.getElementById("wrong-sound").play();
         showPopup(`${currentPlayer.name} 不正解！`);
@@ -105,7 +108,7 @@ function chooseCard(index) {
         currentPoints++; // 間違えたら次のターンの得点が増加
     }
 
-    // 正解不正解に関わらずターンを進める
+    // ターンを進める
     nextTurn();
 }
 
