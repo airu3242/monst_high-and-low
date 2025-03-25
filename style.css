@@ -15,15 +15,17 @@ body {
     border: 2px solid #000;
     padding: 10px;
     display: inline-block;
-    max-width: 150px; /* 最大幅を指定 */
+    width: 200px; /* 200pxの幅 */
+    height: 228px; /* 高さを調整 */
     box-sizing: border-box;
     overflow: hidden; /* はみ出しを防ぐ */
+    text-align: center; /* 画像が中央に表示されるように */
 }
 
 .card img {
     width: 100%;
     height: 100%;
-    object-fit: cover; /* 画像が枠内に収まるように調整 */
+    object-fit: contain; /* 画像が枠に収まるように */
 }
 
 #pile img {
