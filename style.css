@@ -52,6 +52,11 @@ li {
     margin: 0 auto;
 }
 
+#result-cards {
+    display: flex;
+    flex-direction: column; /* 縦並びにする */
+    align-items: center; /* 中央に揃える */
+}
 
 /* JSONに登録されている全キャラクター表示用 */
 #character-list {
