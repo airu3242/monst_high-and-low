@@ -3,7 +3,7 @@ let currentTurn = 0;
 let deck = [];
 let pile = [];
 let currentCards = [];
-let usedCards = new Set();
+let usedCardData = []; // 画像と攻撃力のペアを保存
 let currentPoints = 2; // 最初の得点は2点
 
 function addPlayer() {
@@ -24,12 +24,9 @@ async function startGame() {
         alert("プレイヤーを追加してください。");
         return;
     }
-    // プレイヤー順番をランダムにシャッフル
     players = shuffle(players);
-
     document.getElementById("title-screen").style.display = "none";
     document.getElementById("game-area").style.display = "block";
-
     await loadCards();
     drawInitialCards();
 }
@@ -68,10 +65,7 @@ function getUniqueCards(count) {
     let selectedCards = [];
     while (selectedCards.length < count && deck.length > 0) {
         let card = deck.pop();
-        if (!usedCards.has(card.image)) {
-            usedCards.add(card.image);
-            selectedCards.push(card);
-        }
+        selectedCards.push(card);
     }
     return selectedCards;
 }
@@ -87,15 +81,16 @@ function chooseCard(index) {
         document.getElementById("correct-sound").play();
         showPopup(`${currentPlayer.name} 正解！ ${selectedCard.attack} vs ${otherCard.attack}`);
         currentPlayer.score += currentPoints;
-        currentPoints = 2; // 正解したら次のターンの得点をリセット
+        currentPoints = 2; 
 
-        // ゲーム終了判定
         if (currentPlayer.score >= 20) {
             showResults();
             return;
         }
 
-        // 正解時は2枚とも新しいカードに変更
+        usedCardData.push({ image: selectedCard.image, attack: selectedCard.attack });
+        usedCardData.push({ image: otherCard.image, attack: otherCard.attack });
+
         drawInitialCards();
     } else {
         document.getElementById("wrong-sound").play();
@@ -105,15 +100,13 @@ function chooseCard(index) {
         if (pile.length >= 2) {
             currentCards = [...pile.slice(-2)];
         }
-        currentPoints++; // 間違えたら次のターンの得点が増加
+        currentPoints++;
     }
 
-    // ターンを進める
     nextTurn();
 }
 
 function nextTurn() {
-    // 次のターンでランダムにプレイヤーの順番を変更
     currentTurn = (currentTurn + 1) % players.length;
     updateDisplay();
 }
@@ -152,13 +145,12 @@ function showResults() {
         `<p>${player.name}: ${player.score}ポイント</p>`
     ).join("");
 
-    document.getElementById("result-cards").innerHTML = Array.from(usedCards).map(image => {
-        let card = [...deck, ...pile].find(c => c.image === image);
-        return `<div class="result-card">
-            <img src="${image}" width="150" height="150">
-            <p>攻撃力: ${card ? card.attack : "不明"}</p>
-        </div>`;
-    }).join("");
+    document.getElementById("result-cards").innerHTML = usedCardData.map(card =>
+        `<div class="result-card">
+            <img src="${card.image}" width="150" height="150">
+            <p>攻撃力: ${card.attack}</p>
+        </div>`
+    ).join("");
 }
 
 function restartGame() {
