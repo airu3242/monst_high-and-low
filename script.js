@@ -90,14 +90,34 @@ function chooseCard(index) {
         currentPoints = 2; 
 
         if (currentPlayer.score >= 20) {
-            usedCardData.push({ image: selectedCard.image, attack: selectedCard.attack });
-            usedCardData.push({ image: otherCard.image, attack: otherCard.attack });
+            usedCardData.push({ 
+                player: currentPlayer.name, 
+                image: selectedCard.image, 
+                attack: selectedCard.attack, 
+                isCorrect: true 
+            });
+            usedCardData.push({ 
+                player: currentPlayer.name, 
+                image: otherCard.image, 
+                attack: otherCard.attack, 
+                isCorrect: true 
+            });
             showResults();
             return;
         }
 
-        usedCardData.push({ image: selectedCard.image, attack: selectedCard.attack });
-        usedCardData.push({ image: otherCard.image, attack: otherCard.attack });
+        usedCardData.push({ 
+            player: currentPlayer.name, 
+            image: selectedCard.image, 
+            attack: selectedCard.attack, 
+            isCorrect: true 
+        });
+        usedCardData.push({ 
+            player: currentPlayer.name, 
+            image: otherCard.image, 
+            attack: otherCard.attack, 
+            isCorrect: true 
+        });
 
         drawInitialCards();
     } else {
@@ -111,8 +131,18 @@ function chooseCard(index) {
         }
         currentPoints++;
 
-        usedCardData.push({ image: selectedCard.image, attack: selectedCard.attack });
-        usedCardData.push({ image: otherCard.image, attack: otherCard.attack });
+        usedCardData.push({ 
+            player: currentPlayer.name, 
+            image: selectedCard.image, 
+            attack: selectedCard.attack, 
+            isCorrect: false 
+        });
+        usedCardData.push({ 
+            player: currentPlayer.name, 
+            image: otherCard.image, 
+            attack: otherCard.attack, 
+            isCorrect: false 
+        });
     }
 
     nextTurn();
@@ -153,14 +183,18 @@ function showResults() {
     document.getElementById("game-area").style.display = "none";
     document.getElementById("result-screen").style.display = "block";
 
+    // プレイヤーのスコアを表示
     document.getElementById("result-players").innerHTML = players.map(player =>
         `<p>${player.name}: ${player.score}ポイント</p>`
     ).join("");
 
+    // すべてのカードの結果を表示
     document.getElementById("result-cards").innerHTML = usedCardData.map((card, index) => {
         if (index % 2 === 0) {
             let nextCard = usedCardData[index + 1];
             let comparison = card.attack > nextCard.attack ? '>' : '<';
+            let resultMessage = card.isCorrect ? "正解！" : "不正解！";
+
             return `
                 <div class="result-card-pair" style="display: flex; align-items: center;">
                     <div class="result-card">
@@ -172,20 +206,10 @@ function showResults() {
                         <img src="${nextCard.image}" width="150" height="150">
                         <p>攻撃力: ${nextCard.attack}</p>
                     </div>
+                    <p>${card.player}の回答: ${card.attack} ${comparison} ${nextCard.attack} → ${resultMessage}</p>
                 </div>
             `;
         }
-    }).join("");
-
-    // プレイヤーが選んだカードの結果も表示
-    document.getElementById("result-answers").innerHTML = players.map(player => {
-        let result = usedCardData.filter(card => card.player === player.name);
-        return result.map(card => {
-            let comparison = card.attack > (result[1] ? result[1].attack : 0) ? '>' : '<';
-            return `
-                <p>${player.name}の回答: ${card.attack} ${comparison} ${result[1] ? result[1].attack : 0} → ${card.correct ? '正解' : '不正解'}</p>
-            `;
-        }).join("");
     }).join("");
 }
 
