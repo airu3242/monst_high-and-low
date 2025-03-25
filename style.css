@@ -7,6 +7,7 @@ body {
     display: flex;
     justify-content: center;
     gap: 20px;
+    flex-wrap: wrap; /* 折り返し対応 */
 }
 
 .card {
@@ -14,6 +15,8 @@ body {
     border: 2px solid #000;
     padding: 10px;
     display: inline-block;
+    max-width: 180px; /* 最大幅を指定 */
+    box-sizing: border-box;
 }
 
 .card img {
@@ -31,4 +34,25 @@ body {
     display: flex;
     justify-content: center;
     gap: 10px;
+    flex-wrap: wrap; /* 折り返し対応 */
+}
+
+/* JSONに登録されている全キャラクター表示用 */
+#character-list {
+    display: flex;
+    flex-wrap: wrap; /* 折り返し対応 */
+    justify-content: center;
+    gap: 10px;
+}
+
+.character-card {
+    border: 1px solid #ccc;
+    padding: 10px;
+    text-align: center;
+    max-width: 180px;
+}
+
+.character-card img {
+    width: 200px;
+    height: 200px;
 }
