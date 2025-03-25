@@ -84,10 +84,13 @@ function chooseCard(index) {
         currentPoints = 2; 
 
         if (currentPlayer.score >= 20) {
+            usedCardData.push({ image: selectedCard.image, attack: selectedCard.attack });
+            usedCardData.push({ image: otherCard.image, attack: otherCard.attack });
             showResults();
             return;
         }
 
+        // 正解時、次のターンで使う新しいカードを引く
         usedCardData.push({ image: selectedCard.image, attack: selectedCard.attack });
         usedCardData.push({ image: otherCard.image, attack: otherCard.attack });
 
@@ -101,6 +104,10 @@ function chooseCard(index) {
             currentCards = [...pile.slice(-2)];
         }
         currentPoints++;
+
+        // 不正解時もカードを追加
+        usedCardData.push({ image: selectedCard.image, attack: selectedCard.attack });
+        usedCardData.push({ image: otherCard.image, attack: otherCard.attack });
     }
 
     nextTurn();
