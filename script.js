@@ -120,7 +120,7 @@ function updateDisplay() {
 
     document.getElementById("current-cards").innerHTML = currentCards.map((card, index) =>
         `<div class="card" onclick="chooseCard(${index})">
-            <img src="${card.image}" width="150" height="200">
+            <img src="${card.image}" width="200" height="200">
             <div class="attack-value" style="display: none;">${card.attack}</div>
         </div>`
     ).join("");
