@@ -79,13 +79,14 @@ function chooseCard(index) {
 
     // 比較結果を決定
     let comparisonResult = selectedCard.attack > otherCard.attack ? '>' : '<';
-    let resultMessage = `${currentPlayer.name}の回答: ${selectedCard.attack} ${comparisonResult} ${otherCard.attack}`;
+    let correctMessage = `${currentPlayer.name}の回答: ${selectedCard.attack} ${comparisonResult} ${otherCard.attack}`;
+    let incorrectMessage = `${currentPlayer.name}の回答:`;
 
     // 正解
     if (selectedCard.attack > otherCard.attack) {
         document.getElementById("correct-sound").play();
-        resultMessage += " → 正解！";
-        showPopup(resultMessage);
+        correctMessage += " → 正解！";
+        showPopup(correctMessage);
         currentPlayer.score += currentPoints;
         currentPoints = 2; 
 
@@ -122,8 +123,8 @@ function chooseCard(index) {
         drawInitialCards();
     } else {
         document.getElementById("wrong-sound").play();
-        resultMessage += " → 不正解！";
-        showPopup(resultMessage);
+        incorrectMessage += "不正解！";
+        showPopup(incorrectMessage);
         pile.push(currentCards[0], currentCards[1]);
         drawOneCard();
         if (pile.length >= 2) {
@@ -206,6 +207,7 @@ function showResults() {
         // 一問一行の表示形式
         return `
             <p>${card.player}の回答: ${card.attack} ${comparison} ${nextCard.attack} → ${answerMessage}</p>
+            <br>
             <div class="result-card">
                 <img src="${card.image}" width="150" height="150">
                 <p>攻撃力: ${card.attack}</p>
@@ -214,6 +216,7 @@ function showResults() {
             <div class="result-card">
                 <img src="${nextCard.image}" width="150" height="150">
                 <p>攻撃力: ${nextCard.attack}</p>
+                <br>
             </div>
             <br>
         `;
