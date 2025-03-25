@@ -16,7 +16,7 @@ function displayCharacters(characters) {
 
         return `<div class="character-card">
             <img src="${char.image.replace(/・/g, "%E3%83%BB")}" alt="${extractedName}">
-            <p>名前: ${extractedName}</p>
+            <p>${extractedName}</p>
             <p>攻撃力: ${char.attack}</p>
         </div>`;
     }).join("");
