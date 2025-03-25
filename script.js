@@ -206,12 +206,12 @@ function showResults() {
         // 一問一行の表示形式
         return `
             <p>${card.player}の回答: ${card.attack} ${comparison} ${nextCard.attack} → ${answerMessage}</p>
-            <div class="result-card" style="display: inline-block;">
+            <div class="result-card">
                 <img src="${card.image}" width="150" height="150">
                 <p>攻撃力: ${card.attack}</p>
             </div>
             <p>${comparison}</p>
-            <div class="result-card" style="display: inline-block;">
+            <div class="result-card">
                 <img src="${nextCard.image}" width="150" height="150">
                 <p>攻撃力: ${nextCard.attack}</p>
             </div>
