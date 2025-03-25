@@ -170,7 +170,7 @@ function showResults() {
 
         return `
             <div class="result-entry">
-                <p class="answer-message">「${entry.player}」の回答: ${entry.attack1} ${comparison} ${entry.attack2} → ${resultText}</p>
+                <p class="answer-message">答えたプレイヤー：「${entry.player}」→ ${resultText}</p>
                 <div class="result-cards">
                     <div class="result-card">
                         <img src="${entry.image1}" width="150" height="150">
