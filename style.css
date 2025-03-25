@@ -56,3 +56,22 @@ body {
     width: 200px;
     height: 200px;
 }
+
+#character-list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px;
+}
+
+.character-card {
+    border: 1px solid #ccc;
+    padding: 10px;
+    text-align: center;
+    max-width: 180px;
+}
+
+.character-card img {
+    width: 200px;
+    height: 200px;
+}
