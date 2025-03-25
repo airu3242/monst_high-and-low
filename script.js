@@ -24,6 +24,9 @@ async function startGame() {
         alert("プレイヤーを追加してください。");
         return;
     }
+    // プレイヤー順番をランダムにシャッフル
+    players = shuffle(players);
+
     document.getElementById("title-screen").style.display = "none";
     document.getElementById("game-area").style.display = "block";
 
@@ -85,12 +88,6 @@ function chooseCard(index) {
         showPopup(`${currentPlayer.name} 正解！ ${selectedCard.attack} vs ${otherCard.attack}`);
         currentPlayer.score += currentPoints;
         currentPoints = 2; // 正解したら次のターンの得点はリセット
-        pile = [];
-        if (deck.length > 0 || pile.length > 1) {
-            drawInitialCards();
-        } else {
-            showResults();
-        }
     } else {
         document.getElementById("wrong-sound").play();
         showPopup(`${currentPlayer.name} 不正解！`);
@@ -100,17 +97,18 @@ function chooseCard(index) {
             currentCards = [...pile.slice(-2)];
         }
         currentPoints++; // 間違えたら次のターンの得点が増加
+    }
 
-        // ここでゲームが終了するかどうかを判定
-        if (deck.length === 0 && pile.length < 2) {
-            showResults();
-        } else {
-            nextTurn();
-        }
+    // ここでゲームが終了するかどうかを判定
+    if (currentPlayer.score >= 20) {
+        showResults();
+    } else {
+        nextTurn();
     }
 }
 
 function nextTurn() {
+    // 次のターンでランダムにプレイヤーの順番を変更
     currentTurn = (currentTurn + 1) % players.length;
     updateDisplay();
 }
@@ -161,4 +159,3 @@ function showResults() {
 function restartGame() {
     location.reload();
 }
-
